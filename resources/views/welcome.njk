@@ -1,0 +1,56 @@
+{% extends 'master' %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+        
+            {% if currentUser %}
+            
+                 
+	<div class="row">
+		<div class="span well" style="padding-bottom:5">
+            <form accept-charset="UTF-8" action="HomeController.post" method="POST">
+                <div class="form-group">
+    <label for="exampleTextarea">New Tweet</label>
+    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+  </div>
+                <button class="btn btn-info" type="submit">Post New Tweet</button>
+            </form>
+        </div>
+	</div>
+    
+    <div>
+    
+    {% for item in tweets %}
+    <div class="row">
+		<div class="span well" style="padding-bottom:5">
+            <form accept-charset="UTF-8" action="" method="POST">
+                <div class="form-group">
+    <label for="exampleTextarea">{{item.username}}</label>
+    <p>{{item.content}}</p>
+            </form>
+        </div>
+	</div>
+{% endfor %}
+
+<div>
+
+{% for user in users %}
+    <li><a href="HomeController.follow">{{user.username}}</a></li>
+{% endfor %}
+            {% endif %}
+                    
+            </div>
+            
+
+            {% if not currentUser %}
+              <a href="/login" class="btn btn-info"> You need to login or register!</a>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
